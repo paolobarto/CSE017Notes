@@ -909,3 +909,196 @@ T, and ? Super T
 * Often many solutions are possible. How to select a solution?
   * Use Algorithim Analysis
   * Example: Binary Seacrh and Linear Search
+
+* Algorithim Analysis: Predict the performance of an algorithm before implementing it (coding)
+* Determine the upper bound on the performance of the algorithm based on the problem size
+
+* **Growth Rate** - how fast an algorithms execturion time (or memory space) increases as the input size incresases
+* Worst Case analysis
+
+
+* Theoretical approach independent of computer (Machines) and specific input
+
+* **Big-O** notion - is a mathematical
+function for measuring algorithm time
+complexity (or space complexity)
+based on the input size
+
+
+* Time complexity- Execution time as a
+function of the input size
+
+* Space Complexity- Amount of memory
+space as a function of the input size
+
+## Big-O Notation 
+* Linear Search 
+    `Time(n) = (3n + 2).const=O(n)`
+    * Time grows linearly with the input size (n)
+    * O(n) - Order of n - Linear Algorithm 
+
+
+* Mutiplicative constants and non-dominating terms are ignored 
+
+**Useful formulas** 
+
+1+2+3...+n=n(n+1)/2 - O(n^2)
+
+a^0+a^1+a^2...a^n = O(a^n)
+
+2^0 + 2^1+ … + 2^n = 2^(n+1)-1 ≅ O(2n)
+
+
+**Determining Big-O**
+```java
+
+for(int i=0;i<n;i++)
+{
+    k=k+5
+}
+```
+Time complexity(3*n+1)*const = O(n)
+
+---
+```java
+for(int i=1; i<= n; i++){
+    for(int j=1; j<= n; j++){
+        k = k + i + j;
+ }
+}
+
+```
+Time Complexity: (1 + 3*n + 3*n^2) * const = O(n^2)
+
+---
+```java
+for(int i = 1; i <= n; i++){
+    for(int j = 1; j <= i; j++){
+        k = k + i + j;
+ }
+}
+```
+
+Time Complexity: [1 + 3*n + 3*(1+2+…+n)] * const
+ = n + (n+1)n/2 = O(n^2) - Quadratic
+
+---
+```java
+for(int i = 1; i <= n; i++){
+    k = k + 4;
+}
+for(int i = 1; i <=n; i++){
+    for(int j=1; j<=20; j++){
+     k = k + i + j;
+    }
+}
+```
+Time Complexity:
+ = (1+ 3*n) * const + (1 + 3*n + 3 * 20 * n) * const
+ = O(n)
+
+ ---
+
+ ```java
+if(list.contains(e)){
+    System.out.print(e);
+}
+else{
+    for(Object t: list){
+    System.out.print(t);
+    }
+}
+ ```
+Time Complexity: (1+ n)*const or ((2* n)+ n)*const = O(n)
+
+---
+
+```java
+result=1;
+for(int i=1; i<=n; i++)
+ result = result * a;
+```
+Time complexity: (2 + 3 * n) * const = O(n)
+
+---
+
+```java
+result = a;
+for(int i=1; i<=k; i++)
+ result = result * result; c
+```
+Time complexity: (2 + 3 * log n) * const = O(log n)
+
+---
+
+``` java
+int count = 1;
+while(count < n)
+ count = count * 2;
+```
+Time complexity: (1 + 2 * n/2) * const = O(n)
+
+---
+
+### Analysis of Binary Search
+
+After each iteration the array size is split into half
+
+Eventually until n/(2^k)=1 since can no longet be split
+
+then from there can be considered log n =k
+
+
+--- 
+### Analysis of Selction sort
+
+since there are nested loops depending on the size of each is considered O(n^2)
+
+--- 
+### Analysis Recursive Fibonacci sequence
+Time(n) = Time(n-1) + Time(n-2)
+Time(n) ~ 2 * Time(n-1)
+Time(n-1) = 2 * Time(n-2)
+Time(n) = 2 * 2 * Time(n-2)
+…
+Time(n) = 2^k * Time(n-k)
+Time(n) = 2^(n-2) Time(2)
+Time(n) = 2^(n) * constant
+
+Recursive Fibonacci: O(2n) - Exponential growth
+
+
+**Iterative**
+```java
+public static long fibonacci(long n) {
+ long f0=0,f1=1, f2=1;
+if(n == 1 || n == 2)
+ return f1;
+for(int i=3; i<=n; i++){
+ f0=1;
+ f1=f2;
+ f2=f0+f1;
+ }
+ return f2;
+}
+```
+Time Complexity: (8 + 5 * (n-3)) * const
+Iterative Fibonacci: O(n) - Linear growth
+
+---
+
+**O(1) < O(logn) < O(n) < O(n logn) < O(n^2) < O(n^3) < O(2^n)**
+
+---
+
+```java
+for (int i = n/2; i > 0; --i){ //n/2
+    int x = n * 3;
+ while(x > 1){  //log(3n)
+    for (int j=0; j < 100; j+=2) //50
+        System.out.prinltn(“X: “ + x);
+    x = x / 2;
+ }
+}
+```
+Therefore time complexity is log(3n)
