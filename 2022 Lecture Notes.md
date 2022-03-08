@@ -1102,3 +1102,134 @@ for (int i = n/2; i > 0; --i){ //n/2
 }
 ```
 Therefore time complexity is log(3n)
+
+# 3/8/2022 Data Structures
+
+* Data Structure - Collection of data organized in a specific way
+* Arrays are the most commonly used data structure
+* Choosing efficient data structures and algorithims-key ussyes in developing high-performance software
+* You can write any program with any data structure other than arrays 
+* the program efficienty can be incresed if yoou choose the appropriate data strucutres
+* Data Structure is a generic class with 
+  * Data collection storage
+  * Methods to manipulate the data
+
+**CRUD**
+* Create
+* Remove
+* Update 
+* Delete
+
+## Java collection Framework
+* Containers- Data Structures
+* Iterators- objects to iterate through the containers's data items 
+* Algorithims- Utillity mehtods to manipulate containers 
+
+**Containers**
+* List
+  * ArrayList
+  * LinkedList
+* Stack
+  * Stack
+* Queue
+  * Linked List
+* Priority Queue
+  * PritorityQueue
+* Binary Tree
+  * Hashset
+* Hash Table
+  * Hashmap
+
+![Hierarchy](https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200811210521/Collection-Framework-1.png)
+
+Since ArrayList stems from Collection
+
+```java
+Collection<String> c1 = new ArrayList<String>();
+
+//but in the future
+Collection<String> c3 = (ArrayList<String>)(ArrayList<String>c1).clone();
+//since clone does not exist in collection
+//but clone will by deafult will return type obj so need to down cast back to array list
+
+```
+**ArrayList**
+add() -union
+remove() -intersection
+remove all() -difference
+
+### Iterator
+
+Iterator stems from interface-interface.
+Iterator only contains one method `iterator()`, allowing objects to be called with methods that exist in iterator type 
+
+
+### List Iterator 
+
+Different type that allows for bidirection methods
+
+### Java Collection Framework
+Contains many base methods that can be called staticlly on data structures.
+
+[Link to JavaDoc]( https://docs.oracle.com/javase/7/docs/api/java/util/Collections.html)
+
+## Containers 
+* List: store ordered collection of elements
+* Stack: stores elements that are processed in LIFO fashion (Last-In First-Out)
+* Queue: stores elements that are processed in FIFO fashion (First-In First-Out)
+* PriorityQueue: stores elements that are processed in the order defined by a priority
+
+
+### List 
+
+**Array Based List**
+ArrayList-Random Access to the elemends index to any element 
+
+`add(obj)`-is added to end of the list
+
+`add(int index,obj)`- is added at specific index 
+
+`remove(obj)`- removes val from list
+
+`remove(int index)`- removes val at index
+
+**Linked List**
+LinkedList-Sequential access only (first,last,next)
+
+![Linked List](https://media.geeksforgeeks.org/wp-content/uploads/20200318172830/ezgif.com-gif-maker2.gif)
+
+`addFirst(obj)`- head now becomes obj with referance to old head of list
+
+`addLast(obj)`-tail now becomes obj with referance to old tail of list
+
+`removeFirst()`-Head now becomes referance to second item
+
+`removeLast()` -tail now becomes refeance to second-to-last item
+
+**Summary**
+* ArrayList
+  * Random access to any element
+  * uses an array (contiguous memory space)
+  * Size of the array can be adjusted at runtime
+* LinkedList
+  * Sequential access to the list elements
+  * Uses as much memory as the number of elements in the list (more efficient in memory usage)
+
+### Stack 
+* LIFO structure - (last in first out)
+* Acess to the top of the stack only
+* Operations; `push()`,`pop()`,and `peek()`
+* Used for tracking method calls and arithmrtic expression evaluation
+
+![Stack](https://miro.medium.com/max/1280/1*lb-0r80YYhcnoVcQ3HY-1g.gif)
+
+### Queue 
+* FIFO structure-(first in first out)
+* Access at the front (or back) only
+* Operations: `offer()`,`poll()`,and `peek()`
+  * offer in back poll in front
+* Used for job scheduling and many real-life problme modeling 
+* Implemened as a linked List in the Java API
+
+![queue](http://daltonschool.github.io/CS3A/assets/queuearray-animation.gif)
+
