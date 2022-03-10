@@ -1233,3 +1233,37 @@ LinkedList-Sequential access only (first,last,next)
 
 ![queue](http://daltonschool.github.io/CS3A/assets/queuearray-animation.gif)
 
+# Data Structures continued 3/10/2022
+
+## Priority Queue
+
+* FIFO structure with priority
+* Access at the front or back only
+* Elements are inserted according to their priority
+* Operations: offer(), poll(), and peek()
+* Used for job scheduling and many real-life problem modeling too
+
+* Priority queue uses the natural ordering (compareTo() from comparable) or a comparator (compare())
+
+Will fill each added object in the sort of the given comparator, if none is given will be given normal compare of passed type. 
+
+## Application of Data Strucutes
+
+Infix and post fix is the method of using a stack to hold operations in pemdas
+
+Infix: (1 + 5) * (8 - (4-1))
+
+postfix: 1 5 + 8 4 1 - - *
+
+**With given postfix expression two numbers are taken and the next operation is taken**
+
+
+Ex 12 25 5 1 / / * 8 7 + -
+
+Stack: 12 25 5 1  | pop(1) pop(5) push(5/1)
+Stack: 12 25 5  | pop(5) pop(25) push(25/1)
+Stack: 12 5 | pop(5) pop(12) push(12*5)
+Stack: 60 
+Stack: 60 8 7 | pop(7) pop(8) push(8+7)
+Stack: 60 15 | pop(15) pop(60) push(60-15)
+Stack: 45 | pop(45)
