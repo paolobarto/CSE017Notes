@@ -1267,3 +1267,51 @@ Stack: 60
 Stack: 60 8 7 | pop(7) pop(8) push(8+7)
 Stack: 60 15 | pop(15) pop(60) push(60-15)
 Stack: 45 | pop(45)
+
+# 3/22/2222 Data Structures: Implementation 
+
+  **Outline**
+* Implementation of List
+* Stack
+* Queue
+* Priority Queue
+
+## List 
+* Store data in order
+
+* Commmon Operations on a List
+  * Reteieve
+  * add
+  * remove 
+  * get number of elements
+
+
+**ArrayList `ArrayList<E>`**
+* Fixed array size when the list is constructed
+* New larger array is created when the array is full
+
+
+**LinkedList `LinkedList<E>`**
+* Size not fixed
+* Nodes are created when an Item is added
+* Nodes are linked together to form a list
+  
+
+### Array based List
+
+Inserting an element at a specific index
+
+* will check if `size==capacity`, if larger then will create new array list of size 1.5x original size
+
+* When adding at item to index will shift all later elements over.
+
+**I am learning data structures to understand what is going on behind the scenes and also be capapable of creating my own data structure when needed**
+
+* When I remove an element at a specific index
+  * Shift all elements after the inex and decrease the size by 1
+
+
+**Now we are going to implement an Array Based List class**
+
+[![Screen-Shot-2022-03-22-at-9-42-24-AM.png](https://i.postimg.cc/d1sqyrBx/Screen-Shot-2022-03-22-at-9-42-24-AM.png)](https://postimg.cc/LqWKdqGt)
+
