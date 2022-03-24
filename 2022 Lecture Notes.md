@@ -1315,3 +1315,63 @@ Inserting an element at a specific index
 
 [![Screen-Shot-2022-03-22-at-9-42-24-AM.png](https://i.postimg.cc/d1sqyrBx/Screen-Shot-2022-03-22-at-9-42-24-AM.png)](https://postimg.cc/LqWKdqGt)
 
+# 3/23/2022 Data Structure implementation continued
+
+## Linked List
+* List implementation using linked nodes
+  * Class node (inner class - inside LinkedList)
+
+
+```java
+Class Node {
+    E value;
+    Node next;
+    Node(E) {
+
+    }
+}
+```
+<a href="https://ibb.co/XsprW2V"><img src="https://i.ibb.co/58vg1M2/Screen-Shot-2022-03-24-at-9-29-06-AM.png" alt="Screen-Shot-2022-03-24-at-9-29-06-AM" border="0"></a>
+
+When initiating a linked list,
+1. New node is created setting next to null
+2. Tail and head are set to `&` of 1
+   
+How `addLast()` works
+* Creates new node
+* Sets link of node1 next to node2
+* Set tail to `&` of head2
+
+Traversal
+```java
+Node node  = head;
+while(node!= null) {
+    System.out.println(node.value);
+    node=node.next
+}
+```
+
+`addFirst()`
+* Create new node
+* Set next of new node to head
+* Set new node to head
+
+`removeFirst()`
+* Set head equal to next of current head
+* remove head
+
+### Two variations of Linked List
+**Doubly Linked List** 
+* Every node is linked to the previous and next node
+
+**Circularly linked list**
+* Last element is linked back to the first node
+
+#### Doubly Linked List
+This list improves time complexity of removelast() from O(n) to O(1)
+
+## Stack and Queue
+* **Stack** is implemented using an array basked list with access only at the end of the list
+
+* **Queue** is implemented using a linked list with access at the head and the tail. 
+
