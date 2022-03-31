@@ -1375,3 +1375,109 @@ This list improves time complexity of removelast() from O(n) to O(1)
 
 * **Queue** is implemented using a linked list with access at the head and the tail. 
 
+# 3/29/2022 Data Structure implementation continued
+
+Time complexity of Queue operations are constant except toString().
+
+
+## Priority Queue
+<a href="https://ibb.co/JvtC8Zs"><img src="https://i.ibb.co/dPM7XZ5/Screen-Shot-2022-03-29-at-9-33-16-AM.png" alt="Screen-Shot-2022-03-29-at-9-33-16-AM" border="0"></a>
+
+**Review `Compareable<E>` `compareTo(E object)`**
+
+**`Comparator<E> int compare(E o1,E o2)`**
+
+Comparator is used to compare object in some type of way other than the current ordering of the object
+
+# 3/31/2022 Binary Trees (very tired today)
+
+## Properties
+
+**What is a binary tree**
+* Data is organized in a binary tree strucutre
+* easy and efficient access and update in large collections of data
+* Used for efficient search operations
+* Wide range of applications: mathematical expressions, game strategies, decision tree, data compression
+
+**Properties**
+* set of elemtnes called nodes(verticies) interconnected with edges (arcs)
+* The first node is called the root
+* The root is connected to two binary trees (left and right)
+* Every node has a parent (expect the root) may have no child, one child, or at most two chldren
+* the root is the ancestor of all nodes
+* **Path**- Sequence of connected nodes starting at any level of the tree
+* **Length of a path** - number of nodes in the sequence -1 or numberof edges
+* If there is a path from node P to node Q, Q is the descendant of P and P is an ancestor of Q
+* **Depth of a node**- length of a path from root to the node
+* **Height of a tree**- the depth of the deepest node +1
+* **Leaf Node**- node as no children
+* **Internal Node**-node that has at least one child
+
+
+* **Full Binary Tree** - each node is a leaf or an internal node with exactly two children
+* **Complete Binary Tree**- Every level is filled except the last level and the leaves on the last level are placed left most
+* **Balanced Binary Tree** - for each node the height of the left subtree and the height of the right subtree differ by at must by 1
+
+## Traversal 
+* Any process of visiting all of the nodes in a tree is called traversal
+* Three common traversals
+  * Preorder
+  * Inorder
+  * Postorder
+**Preorder Traversal** 
+* Any node is visitied before its chidlren
+* V-L-R = Visit Node -Go left-Go right
+* Visit the node
+* Traverse to the left subtree
+* traverse to the right subtree
+
+**inorder traversal**
+* Any node is visited after its left subtree and before its right subtree
+* L-V-R = Go left-visit node-go right
+* Traverse to left subtree
+* Visit the node
+* Traverse to the right subtree
+
+**Post order traversal** 
+* Any node is visited after its left subtree and right subtree
+* L-R-V = Go left-Go Right-Visit node
+* Traverse left subtree
+* traverse right subtree
+* Visit node
+
+<a href="https://ibb.co/YWS4Gxg"><img src="https://i.ibb.co/mBKr73p/Screen-Shot-2022-03-31-at-10-02-17-AM.png" alt="Screen-Shot-2022-03-31-at-10-02-17-AM" border="0"></a>
+
+Preorder:
+60 55 30 12 35 38 58 70 65 61 67 80 75 72 91
+
+Inorder:
+12 30 35 38 55 58 60 62 65 67 70 72 75 80 91 
+
+post order:
+12 38 35 30 58 55 61 67 65 72 75 91 80 70 60
+
+## Binary Search Tree (BST)
+* **Special Binary tree**
+  * BST has a root, a left subtree (L) and a right subtree (R)
+  * The value of the root is greater than the value of every node in L
+  * The value of the root is less that the value of every node in R
+  * L and R are also BSTs
+  * Used for efficient search in large data sets 
+
+**Common operations on BST**
+* **Search** for a specific value in the BST
+* **Add** a node to the BST while keeping the same properties
+* **Remove**  node from the BST while keeping best prooperties
+* **Traverse** the BST(preorder,inorder,postorder)
+
+**search in prior example** 35<60 (L)-> 35<55 (L)->35>30 (R) -> 35
+
+**Add** uses similar algorithm to search just adding when reached null
+
+**Remove**
+* Node is leaf
+  * simply set to null
+* Node has one leaf
+  * leaf becomes new node
+* In case of (70)
+  * Would find largest node in left subtree and replace with current node
