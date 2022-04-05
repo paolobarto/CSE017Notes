@@ -1481,3 +1481,22 @@ post order:
   * leaf becomes new node
 * In case of (70)
   * Would find largest node in left subtree and replace with current node
+
+# 4/5/2022 Binary trees Exam thursday 4:25
+
+## BST Implementation
+
+* Array Based BST
+  * Not the best since will waste the most amount of space
+* Linked BST
+
+**Array Based**
+Nodes of the tree are stored in the array 
+Children of the node follow the node
+
+**Linked Based**
+Nodes of the tree are linked
+Every node has a value and two referances to the left and right child.
+
+<a href="https://ibb.co/znYdpzF"><img src="https://i.ibb.co/7Y5hPqQ/Screen-Shot-2022-04-05-at-9-32-31-AM.png" alt="Screen-Shot-2022-04-05-at-9-32-31-AM" border="0"></a>
+
