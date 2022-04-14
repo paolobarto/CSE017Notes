@@ -1500,3 +1500,95 @@ Every node has a value and two referances to the left and right child.
 
 <a href="https://ibb.co/znYdpzF"><img src="https://i.ibb.co/7Y5hPqQ/Screen-Shot-2022-04-05-at-9-32-31-AM.png" alt="Screen-Shot-2022-04-05-at-9-32-31-AM" border="0"></a>
 
+# 4/12/2022 Heaps
+* Heap is a special binary tree 
+  * Complete binary tree
+    * Meaning all levels excpet last are filled
+  * Every node is greater than or equal to any of it children (Max Heap) [Min Heap: less than or equal]
+  * Used for effiecient sorting
+
+
+## Heap operations
+2 main operations 
+**Adding a new node while maintaining properties**
+**Removing a node while keeping heap properties**
+
+
+## Heap implementations
+
+IndexOf(Parent) = (IndexOf(current) - 1) / 2
+
+IndexOf(Left child) = 2 * IndexOf(current) + 1
+IndexOf(Right child) = 2 * IndexOf(current) + 2
+
+# 4/14/2022 Hash Tables
+**Hashtables preform searches in O(1)**
+
+* Hash tables use associatice access to data
+* Associative memory: access data using the data itself instead of an address (index)
+* Store the data in an array - Hash Table (HT)
+* Access the element in HT using a hash function h() that returns an index in HT
+
+
+* If the size of HT is N then
+  `0<= hash() <= N-1`
+* Searching for a value key is performed using one comparison with
+  * HT[hash(hashcode(key))]
+
+* adding data to the table
+  * Apply hash to the index to find where the data should be added
+* Retriving data from the table
+  * apply hash to the datato find the index where it is in the table
+<a href="https://ibb.co/X3ZqdRx"><img src="https://i.ibb.co/hZRSnzF/Screen-Shot-2022-04-14-at-9-30-30-AM.png" alt="Screen-Shot-2022-04-14-at-9-30-30-AM" border="0"></a>
+<a href="https://ibb.co/p2shrDY"><img src="https://i.ibb.co/VVhwpyf/Screen-Shot-2022-04-14-at-9-34-53-AM.png" alt="Screen-Shot-2022-04-14-at-9-34-53-AM" border="0"></a>
+
+
+**Collisions exist when two numbers are added with the same index**
+* Two ways to solve collisions
+* Sperate chaining- collisions are stored outside the hash table in a list
+* Open addressing collisions are stored in the hash table itslef at the next avalible index
+
+
+**Seperate chaining**
+<a href="https://ibb.co/NsXwtxK"><img src="https://i.ibb.co/VtdXJVT/Screen-Shot-2022-04-14-at-9-38-37-AM.png" alt="Screen-Shot-2022-04-14-at-9-38-37-AM" border="0"></a>
+
+**Open Addressing**
+* Linear probing 
+  * Looking for the next avalible slot using leinear function till empty slowt is found
+* Quadratic probing is done by squareing the index to find the next avalible index
+* Double probing- is double by using another hashing function
+
+The number of collusions may affect the performance of the serach operations 
+could result in linear search if the number of collisions is high
+
+  
+
+Search, add, remove - O(1)
+* Three factors may cause more collisions 
+* affect the constant time performance
+  * HashCode function
+  * Hash function
+  * Size of the hash table
+
+
+**HashCode function**
+
+* hashCode() is simple for integers - return the integer itself
+* hashcode() exists already in simple objects
+
+
+Everytime equal() is overridded, hashCode() should be as well
+
+**Size of the Hash Table**
+* Choosing the size of the table
+* A prime number larger than the size of the data set - may take time to find such number
+* Bigger table - less collisions - waste of memory space
+* Tradeoff - space vs. time - use power of 2 to simplify calculations
+
+**Load Factor - How full is the hash table?**
+* Load Factor = # of added elements / size of the HT
+*  High load factor results in more collisions - requires rehashing
+  
+* Rehashing - Increase the size of the table and rehash all the data to add it to the new table
+* 0.5 < load factor < 0.9 (0.5 for probing and 0.9 for chaining)
+
