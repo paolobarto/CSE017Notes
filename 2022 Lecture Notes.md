@@ -1592,3 +1592,237 @@ Everytime equal() is overridded, hashCode() should be as well
 * Rehashing - Increase the size of the table and rehash all the data to add it to the new table
 * 0.5 < load factor < 0.9 (0.5 for probing and 0.9 for chaining)
 
+# 4/19/2022 Implementation of Hashmap
+
+**Load factor of 0.5 is going to be used for PP3**
+
+# 4/26/2022 Sorting algorithms
+
+## Sorting problem
+* Given a list of data items arrange the list in an ascending or descenting order
+* Commonly used in computer science to organize objects based on one specific criterion
+* Allows using efficient binary search algorithm
+* Sorting is more complex than searching
+
+**Sorting types**
+Internal - Data is stored in memory
+
+External - Data is in secondary memory (Hard disk:Large Files)
+<a href="https://ibb.co/nwc0xSc"><img src="https://i.ibb.co/NFj3czj/Screen-Shot-2022-04-26-at-9-30-44-AM.png" alt="Screen-Shot-2022-04-26-at-9-30-44-AM" border="0"></a>
+
+### Selection Sort
+Finds minimum in unselected portion of the list.
+
+```
+Algorithm selectionSort
+ for every element i (N size of the list)
+ find the smallest element from i to N-1
+ swap element i with the smallest element
+End
+```
+```java
+public static void selectionSort(int[] list) {
+  int minIndex;
+  for (int i=0; i<list.length-1; i++) {
+    int min = list[i];
+    minIndex = i;
+    for (int j=i; j<list.length; j++){
+      if (list[j] < min){
+      min = list[j];
+      minIndex = j;
+      }
+  }
+  int temp = list[i];
+  list[i] = list[minIndex];
+  list[minIndex] = temp;
+ }
+}
+```
+Time Complexity
+```
+Iteration1(outer loop)
+ (n)iterations(inner loop)
+Iteration 2 (outer loop)
+ (n-1) iterations (inner loop)
+Iteration k (outer loop)
+ (n-k+1) iterations (inner loop)
+Iteration n-1 (outer loop)
+ 1 iteration (inner loop)
+1 + 2 + … + (n) = n(n+1)/2
+```
+Time complexity: O(n^2) - Quadratic growth
+Space complexity: O(1) - no additional space
+(Space complexity is used to describe additional space within the memory)
+
+**Generic selection sort**
+```java
+public static <E extends Comparable<E>>
+ void selectionSort(E[] list) {
+    int minIndex;
+    for (int i=0; i<list.length-1; i++) {
+      E min = list[i];
+      minIndex = i;
+      for (int j=i; j<list.length; j++){
+        if (list[j].compareTo(min) < 0){
+          min = list[j];
+          minIndex = j;
+        }
+      }
+  E temp = list[i];
+  list[i] = list[minIndex];
+  list[minIndex] = temp;
+  }
+}
+```
+
+### Insertion Sort
+Iterating through list sorting individual item into sorted list.
+```
+Algorithm insertionSort
+ for every element i
+ insert element i in the sorted list
+(0 to i)
+ end for
+End
+```
+
+```java
+public static void insertionSort(int[] list) {
+ for (int i=1; i<list.length; i++) {
+ //Insert element i in the sorted sub-list
+ int currentVal = list[i];
+ int j = i;
+ while (j > 0 && currentVal < (list[j - 1]))
+ {
+ // Shift element (j-1) into element (j)
+ list[j] = list[j - 1];
+ j--;
+ }
+ // Insert currentVal at position j
+ list[j] = currentVal;
+ }
+}
+```
+```
+Iteration1(outer loop)
+ (1)iteration(inner loop)
+Iteration 2 (outer loop)
+ (2) iterations (inner loop)
+Iteration k (outer loop)
+ (k) iterations (inner loop)
+Iteration n-1 (outer loop)
+ n-1 iterations (inner loop)
+1 + 2 + … + (n-1) = n(n-1)/2
+```
+Time complexity: O(n^2) - Quadratic growth
+Space complexity: O(1)
+
+### Bubble Sort 
+
+```
+Algorithm BubbleSort
+ sorted = false
+ last = N-1 (N size of the array)
+ while (not sorted)
+  sorted = true
+  for i=0 to last-1
+    if(list[i] > list[i+1])
+      swap(list[i], list[i+1])
+      sorted = false
+    end if
+  end for
+  last = last - 1;;
+ end while
+End
+```
+
+```java
+public static void bubbleSort(int[] list) {
+  boolean sorted = false;
+  for (int k = 1; k < list.length && !sorted; k++) {
+      sorted = true;
+      for (int i = 0; i < list.length - k; i++) {
+          if (list[i] > list[i + 1]) {
+              // swap
+              int temp = list[i];
+              list[i] = list[i + 1];
+              list[i + 1] = temp;
+              sorted = false;
+          }
+      }
+    }
+}
+```
+
+```
+Iteration1(outer loop)
+ (n-1)iteration(inner loop) to push the max
+Iteration 2 (outer loop)
+ (n-2) iterations (inner loop)
+Iteration k (outer loop)
+ (n-k) iterations (inner loop)
+Iteration n-1 (outer loop)
+ 1 iterations (inner loop)
+1 + 2 + … + (n-1) = n(n-1)/2
+```
+
+Time complexity: O(n^2) - Quadratic growth
+Space complexity: O(1)
+
+### Merge Sort
+**Merge sort uses divide and conquer strategy, constantly halving the size of the array**
+
+```
+Algorithm MergeSort (recursive)
+ Split array in two halves
+ MergeSort the first half
+ MergeSort the second half
+ Merge the two sorted halves
+End
+```
+
+```java
+public static void mergeSort(int[] list) {
+    if (list.length > 1) { // ==1: base case
+        int[] firstHalf = new int[list.length / 2];
+        int[] secondHalf = new int[list.length - list.length / 2];
+        System.arraycopy(list, 0, firstHalf, 0, list.length / 2);
+        System.arraycopy(list, list.length / 2, secondHalf, 0, list.length - list.length / 2);
+        mergeSort(firstHalf);
+        mergeSort(secondHalf);
+        merge(firstHalf, secondHalf, list);
+    }
+}
+
+public static void merge(int[] list1, int[] list2, int[] list) {
+    int list1Index = 0;
+    int list2Index = 0;
+    int listIndex = 0;
+    while (list1Index < list1.length && list2Index < list2.length) {
+        if (list1[list1Index] < list2[list2Index]) list[listIndex++] = list1[list1Index++];
+        else list[listIndex++] = list2[list2Index++];
+    }
+    while (list1Index < list1.length) list[listIndex++] = list1[list1Index++];
+    while (list2Index < list2.length) list[listIndex++] = list2[list2Index++];
+}
+
+```
+
+```
+Splitting the array in halves
+  (log n) iterations (n/2^k = 1)
+ Merging halves
+  (n) iterations (worst case)
+```
+Time compelxity: O(n log n)-Log Linear
+
+```
+Splitting the array in halves
+ n/2, n/4, n/8, …
+ Total number of elements
+ (n/2 + n/4 + n/8 + …) ≃ n
+```
+Space complexity: O(n)
+
+### Quick Sort
+Quick sort is used to divide and conquer 
