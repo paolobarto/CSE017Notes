@@ -1825,4 +1825,223 @@ Splitting the array in halves
 Space complexity: O(n)
 
 ### Quick Sort
-Quick sort is used to divide and conquer 
+Quick sort is used to divide and conquer
+* Divide two lists into partially stored lists using a pivot
+  * part 1: all elements less than pivot
+
+```
+Algorithm QuickSort (recursive)
+ Select a pivot
+ Partition array in two parts
+ Part1: Elements less than the pivot
+ Part2: Elements greater than the pivot
+ QuickSort(part1)
+ QuickSort(part2)
+End
+```
+```java
+public static void quickSort(int[] list) {
+      quickSort(list, 0, list.length - 1);
+  }
+
+  public static void quickSort(int[] list,
+          int first, int last) {
+      if (last > first) {
+          int pivotIndex = partition(list, first, last);
+          quickSort(list, first, pivotIndex - 1);
+          quickSort(list, pivotIndex + 1, last);
+      }
+  }
+
+  public static int partition(int list[],
+          int first, int last) {
+      int pivot;
+      int index, pivotIndex;
+      pivot = list[first];// pivot is the first element
+      pivotIndex = first;
+      for (index = first + 1; index <= last; index++)
+          if (list[index] < pivot) {
+              pivotIndex++;
+              swap(list, pivotIndex, index);
+          }
+      swap(list, first, pivotIndex);
+      return pivotIndex;
+  }
+
+  public static void swap(int[] list, int i1, int i2) {
+      int temp = list[i1];
+      list[i1] = list[i2];
+      list[i2] = temp;
+  }
+
+```
+
+```
+Partitioning the array in ~ halves
+ (log n) iterations (average)
+ Arranging elements around the pivot
+ (n) iterations - worst case
+```
+**Time complexity: average case
+ O(n log n) - Log Linear**
+
+ Space complexity
+ ```
+Partitioning the array not in halves
+ (n) iterations - worst case
+ Arranging elements around the pivot
+ (n) iterations - worst case
+ ```
+ **Time complexity: O(n2)- worst case
+Space complexity: O(1) **
+
+### Heap Sort 
+Sort using heap data strucutre 
+* Data to be sorted is added to heap
+* As data is removed from the heap it is removed in decending order
+
+
+```java
+public static <E extends Comparable<E>>
+void heapSort(E[] list) {
+Heap<E> heap = new Heap<>();
+ for(int i=0; i<list.length; i++){
+  heap.add(list[i]);
+ }
+for (int i=list.length-1; i>=0; i--) {
+  list[i] = heap.remove();
+}
+}
+```
+
+```
+add() method - (O(log n))
+ Trace path from a leaf to root
+remove() method - (O(log n))
+ Trace path from the root to a leaf
+add() and remove() are called n times
+to create the heap and to get the
+sorted data - (O(n))
+```
+**Heap Sort: Worst case
+ O(n log n) - Log Linear**
+
+ ```
+Heap with n nodes required to sort the
+array list
+ ```
+**Heap Sort space complexity: O(n)**
+
+# Quadratic and log linear sorting algorithims 5/3/2022
+
+**The ceiling of possibility for sorting algorihms that use comparables is (nlogn)
+
+## Bucket Sort
+* For integers only
+* Range of values to be sorted - [0,t]
+* use (t+1) buckets
+* An element equal to i is put in bucket i
+* A bucket holds all the elemetns with the same value
+
+```
+Algorithm bucketSort(list)
+create t+1 buckets
+ (t is the maximum value in the list)
+for each value in list (n)
+Assign value to bucket(value)
+for each bucket i (0 to t)
+ Assign the elements of bucket i to list
+```
+
+```java
+public static void bucketSort(int[] list) {
+    int t = max(list);
+    ArrayList < ArrayList < Integer >> buckets;
+    buckets = new ArrayList < > (t + 1);
+    for (int i = 0; i < t + 1; i++) buckets.add(new ArrayList < > ()); // bucket i
+    //Distribute the data on the buckets
+    for (int i = 0; i < list.length; i++) {
+        ArrayList < Integer > bucket = buckets.get(list[i]);
+        bucket.add(list[i]);
+    }
+    // Move the data from the buckets back to the list
+    int k = 0;
+    for (int i = 0; i < buckets.size(); i++) {
+        ArrayList < Integer > bucket = buckets.get(i);
+        for (int j = 0; j < bucket.size(); j++) list[k++] = bucket.get(j);
+    }
+}
+```
+
+```
+Creating the buckets - O(t)
+ Distribute data on buckets - (O(n))
+ Move data from buckets to list(O(n))
+Bucket Sort:
+ Time Complexity: O(n+t) - Linear
+ Space Complexity: O(t)
+Not desirable for large t
+```
+
+## Radix Sort 
+* Bucket sort with fixed t buckets
+* Radix-10 means 10 buckets (decimal numbers)
+* Divide data into subgroups based on their radix positions
+* Buck sort is applied on each radix position 
+
+![](https://thumbs.gfycat.com/QuestionableHauntingFlatfish-size_restricted.gif)
+
+```
+Algorithm radixSort(list)
+ create 10 buckets
+ max = number of digits of the largest value in list
+ for each digit (0 to max-1){
+ for each item in list
+ Assign item to bucket number
+ (item % 10(digit+1) / 10digit)
+ for each bucket i (0 to 9)
+ Assign the elements of bucket i to list
+ clear all buckets
+ }
+End
+```
+```java
+ public static void radixSort(int[] list) {
+        ArrayList<ArrayList<Integer>> buckets;
+        buckets = new ArrayList<>(10); // 10 buckets
+        Integer maxValue = max(list);
+        int digits = maxValue.toString().length();
+        for (int d = 0; d < digits; d++) {
+            for (int j = 0; j < 10; j++) { // create buckets for iteration d
+                buckets.add(new ArrayList<>());
+            }
+            // Distribute the data on the buckets
+            for (int j = 0; j < list.length; j++) {
+                int digit = (list[j] % (int) (Math.pow(10, d + 1))) / (int) (Math.pow(10, d));
+                ArrayList<Integer> bucket = buckets.get(digit);
+                bucket.add(list[j]);
+            }
+            // Move the data from the buckets back to the list
+            int k = 0;
+            for (int l = 0; l < 10; l++) {
+                ArrayList<Integer> bucket = buckets.get(l);
+                for (int j = 0; j < bucket.size(); j++)
+                    list[k++] = bucket.get(j);
+            }
+            buckets.clear(); // for next iteration
+        }
+    }
+```
+```
+Classifying the data into buckets- O(n)
+ Classifying for each position- O(d)
+Radix Sort:
+ Time Complexity: O(d.n)
+ Space complexity: O(1)
+ d: maximum number of radix positions
+```
+
+
+
+
+<a href="https://ibb.co/2SQk5yz"><img src="https://i.ibb.co/Jq4sCKY/Screen-Shot-2022-05-03-at-9-52-43-AM.png" alt="Screen-Shot-2022-05-03-at-9-52-43-AM" border="0"></a>
