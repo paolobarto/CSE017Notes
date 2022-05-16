@@ -2045,3 +2045,57 @@ Radix Sort:
 
 
 <a href="https://ibb.co/2SQk5yz"><img src="https://i.ibb.co/Jq4sCKY/Screen-Shot-2022-05-03-at-9-52-43-AM.png" alt="Screen-Shot-2022-05-03-at-9-52-43-AM" border="0"></a>
+
+# Final Review
+
+```
+for (int i = n; i > 0; --i) n
+ for (int j = n/20; j > 0; j /= 2) (log(n/20)+1)
+  for(int k = 1; k < n; k *= 3) (log (n))
+  int product = i * k + j * (k-2) + k;
+```
+Because Nested loops answer is n*(log(n/20)+1)*log(n)
+
+
+Quick sort example
+```
+16 80 22 55 64 96 25 pivot=16
+16* 80 22 55 64 96 25 
+16* 80 22 55 64 96 25 pivot=80
+16* 80 22 55 64 25 96 
+16* 25 22 55 64 80* 96 pivot =25
+16* 25 22 55 64 80* 96
+16* 22 25* 55 64 80* 96
+16* 22 25* 55* 64 80* 96 pivot =55
+
+```
+not radix or bucket or insertion or selection
+
+Look at all binary tree traversal
+
+Deleting node from binary tree moves largest value in right subtree to root
+
+adding node in heap would add it to left most position on row and swap with roots till value is found
+
+Heap as an array list starts from root to root children to their children from left to right
+
+linear probing in hash table
+```
+34 29 53 44 120 39 45
+capacity =4 lf=0.5 rehash when size=2
+
+put(34)hash(34)=34%4=2,HT[2]=34,size=1
+put(29):hash(29)=29%4=1, HT[1]=29 size=2
+put(53): rehash - capacity=8 rehash when size=4
+put(29):hash(29)=29%8=5,HT[5]=29
+put(34):hash(34)=34%8=2,HT[2]=34
+put(53):hash(53)=53%8=5,HT[6]=53
+put(44):hash(44)=44%8=4 HT[4]=44
+rehash since size=4, now size =16 and rehash when size=8
+put(34):hash(34)=34%16=2,HT[2]=34
+put(44):hash(44)=44%16=12, HT[12]=44
+put(29): hash(29)=29%16=13, HT[13]=29
+put(53): hash(120)=120%16, HT[8]=120
+put(39): hash(39)=39%16=7 HT[7]=39
+put(45): hash(45)=45%16=13, HT[14]=45
+```
